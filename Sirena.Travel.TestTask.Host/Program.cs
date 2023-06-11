@@ -3,26 +3,35 @@ using Sirena.Travel.TestTask.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services
+    .AddMappingProfiles()
+    .AddSearchService()
+    .AddHttpClients(builder.Configuration)
+    .AddProviders()
+    .AddCache(builder.Configuration);
 
-builder.Services.AddMappingProfiles();
+builder.Services.AddMvc();
 
-builder.Services.AddSearchService();
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
 }
-app.UseStaticFiles();
-
 app.UseRouting();
 
-app.UseAuthorization();
-
-app.MapRazorPages();
+app.MapControllers();
 
 app.Run();

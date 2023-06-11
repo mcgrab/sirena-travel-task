@@ -15,8 +15,8 @@ namespace Sirena.Travel.TestTask.Mapping
                 .ForMember(dest => dest.Departure, opts => opts.MapFrom(src => src.Origin));
 
             CreateMap<ProviderTwoRoute, Route>()
-                .ForMember(dest => dest.DestinationDateTime, opts => opts.MapFrom(src => src.Departure.Date))
-                .ForMember(dest => dest.OriginDateTime, opts => opts.MapFrom(src => src.Arrival.Date))
+                .ForMember(dest => dest.DestinationDateTime, opts => opts.MapFrom(src => src.Arrival.Date))
+                .ForMember(dest => dest.OriginDateTime, opts => opts.MapFrom(src => src.Departure.Date))
                 .ForMember(dest => dest.TimeLimit, opts => opts.MapFrom(src => src.TimeLimit))
                 .ForMember(dest => dest.Price, opts => opts.MapFrom(src => src.Price))
                 .ForMember(dest => dest.Destination, opts => opts.MapFrom(src => src.Arrival.Point))

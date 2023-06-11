@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  sirenatravelhost:
+    image: sirenatravelhost
+    build:
+      context: .
+      dockerfile: Sirena.Travel.TestTask.Host/Dockerfile
+    ports:
+      - 5635:80
+    environment:
+     - Redis__ConnectionString=redis://redis-st:6379
+     - ProviderOneSettings_Host=http://provider-one
+     - ProviderOneSettings_Ping=/api/v1/ping
+     - ProviderOneSettings_Search=/api/v1/search
+     - ProviderTwoSettings_Host=http://provider-two
+     - ProviderTwoSettings_Ping=/api/v1/ping
+     - ProviderTwoSettings_Search=/api/v1/search
+     
+    networks:
+      - backend
+    container_name: sirenatravelhost
+    depends_on:
+      - redis-st
+  redis-st:
+    image: redis/redis-stack:latest
+    networks:
+      - backend
+    ports:
+      - 6379:6379
+    container_name: redis-st
+networks:
+  backend:
+    driver: bridge    

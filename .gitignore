@@ -280,23 +280,3 @@ __pycache__/
 
 # Telerik's JustMock configuration file
 *.jmconfig
-
-# BizTalk build output
-*.btp.cs
-*.btm.cs
-*.odx.cs
-*.xsd.cs
-AqsiAdmin/ClientApp/wwwroot/
-*.sig123
-*.pem
-*.sig
-TMS/configuration/AcquirerConfiguration/
-TMS/configuration/PrivateSettings/
-KDS/ClientApp/wwwroot/
-*.diagsession
-KeepAliveService/tests-healthchecksdb
-run/secrets/
-Updater/updates/
-Updater/images/
-Updater/wwwroot/
-OcelotGateway/ocelot.json

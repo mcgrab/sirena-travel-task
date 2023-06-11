@@ -1,6 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Redis.OM;
+using Redis.OM.Contracts;
 using Sirena.Travel.TestTask.Contracts;
+using Sirena.Travel.TestTask.Impl.Cache;
+using Sirena.Travel.TestTask.Impl.Providers;
 using Sirena.Travel.TestTask.Impl.Services;
 using Sirena.Travel.TestTask.Impl.Settings;
 
@@ -11,6 +15,18 @@ namespace Sirena.Travel.TestTask.Impl
     {
         public const string PROVIDER_ONE_CLIENT_NAME = "ProviderOneClient";
         public const string PROVIDER_TWO_CLIENT_NAME = "ProviderTwoClient";
+
+        public static IServiceCollection AddCache(this IServiceCollection services, IConfiguration configuration)
+            => services
+            .AddScoped(typeof(ICacheRepository<>), typeof(RedisCacheRepository<>))
+            .AddHostedService<RedisRouteIndexInitializer>()
+            .AddSingleton<IRedisConnectionProvider>(new RedisConnectionProvider(
+                configuration.GetValue<string>("Redis:ConnectionString") ?? throw new ArgumentException("Не найдена конфигурация для подключения к Redis.")));
+
+        public static IServiceCollection AddProviders(this IServiceCollection services)
+            => services
+            .AddScoped<IRouteProvider, ProviderOneService>()
+            .AddScoped<IRouteProvider, ProviderTwoService>();
 
         public static IServiceCollection AddSearchService(this IServiceCollection services)
             => services.AddScoped<ISearchService, SearchService>();

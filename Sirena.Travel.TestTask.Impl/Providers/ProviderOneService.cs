@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.Options;
 using Sirena.Travel.TestTask.Contracts;
 using Sirena.Travel.TestTask.Contracts.Exceptions;
 using Sirena.Travel.TestTask.Contracts.Models;
 using Sirena.Travel.TestTask.Contracts.Models.ProviderOne;
 using Sirena.Travel.TestTask.Impl.Settings;
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Runtime;
 
 namespace Sirena.Travel.TestTask.Impl.Providers;
 
@@ -44,7 +41,7 @@ internal class ProviderOneService : IRouteProvider
 
         var response = await client.PostAsJsonAsync(_providerOneSettings.Search, mappedRequest, cancellationToken);
 
-        var result = await response.Content.ReadFromJsonAsync<ProviderOneSearchResponse>() 
+        var result = await response.Content.ReadFromJsonAsync<ProviderOneSearchResponse>()
             ?? throw new SirenaTravelException("Не удалось получить ответ от провайдера.");
 
         return _mapper.Map<Route[]>(result.Routes);

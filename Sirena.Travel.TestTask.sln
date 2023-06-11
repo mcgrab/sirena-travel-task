@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirena.Travel.TestTask.Host", "Sirena.Travel.TestTask.Host\Sirena.Travel.TestTask.Host.csproj", "{CF9B3D0D-184B-4220-B664-F13D4A879035}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirena.Travel.TestTask.Contracts", "..\Sirena.Travel.TestTask.Contracts\Sirena.Travel.TestTask.Contracts.csproj", "{DFF9DD66-885E-4AEF-BF12-D8E30ECBC8FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirena.Travel.TestTask.Contracts", "Sirena.Travel.TestTask.Contracts\Sirena.Travel.TestTask.Contracts.csproj", "{DFF9DD66-885E-4AEF-BF12-D8E30ECBC8FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirena.Travel.TestTask.Mapping", "..\Sirena.Travel.TestTask.Mapping\Sirena.Travel.TestTask.Mapping.csproj", "{D00D8EC5-87FC-4EEF-B95E-32D9F4FD6C63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirena.Travel.TestTask.Mapping", "Sirena.Travel.TestTask.Mapping\Sirena.Travel.TestTask.Mapping.csproj", "{D00D8EC5-87FC-4EEF-B95E-32D9F4FD6C63}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirena.Travel.TestTask.Impl", "Sirena.Travel.TestTask.Impl\Sirena.Travel.TestTask.Impl.csproj", "{349A66E5-5F71-4E5B-B6AD-60E2B7F47D12}"
 EndProject

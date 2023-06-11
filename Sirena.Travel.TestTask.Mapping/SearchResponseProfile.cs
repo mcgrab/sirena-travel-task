@@ -8,7 +8,7 @@ internal class SearchResponseProfile : Profile
 {
     public SearchResponseProfile()
     {
-        CreateMap<ConcurrentBag<Route>, SearchResponse>()
+        CreateMap<IEnumerable<Route>, SearchResponse>()
             .ForMember(dest => dest.Routes, opts => opts.MapFrom(src => src))
             .ForMember(dest => dest.MinMinutesRoute, opts => opts.Ignore())
             .ForMember(dest => dest.MaxMinutesRoute, opts => opts.Ignore())
@@ -26,7 +26,7 @@ internal class SearchResponseProfile : Profile
 
                 foreach (var route in dest.Routes)
                 {
-                    var duration = (route.DestinationDateTime - route.OriginDateTime).Minutes;
+                    var duration = (int)(route.DestinationDateTime - route.OriginDateTime).TotalMinutes;
                     var price = route.Price;
                     minMinutes = Math.Min(minMinutes, duration);
                     maxMinutes = Math.Max(maxMinutes, duration);

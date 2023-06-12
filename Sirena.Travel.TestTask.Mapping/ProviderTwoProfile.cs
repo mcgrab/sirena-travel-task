@@ -21,7 +21,7 @@ namespace Sirena.Travel.TestTask.Mapping
                 .ForMember(dest => dest.Price, opts => opts.MapFrom(src => src.Price))
                 .ForMember(dest => dest.Destination, opts => opts.MapFrom(src => src.Arrival.Point))
                 .ForMember(dest => dest.Origin, opts => opts.MapFrom(src => src.Departure.Point))
-                .ForMember(dest => dest.Id, opts => opts.MapFrom(src => Guid.NewGuid()));
+                .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.GenerateGuid()));
         }
     }
 }

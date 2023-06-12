@@ -27,4 +27,9 @@ public class ProviderOneRoute
     // Mandatory
     // Timelimit. After it expires, route became not actual
     public DateTime TimeLimit { get; set; }
+
+    public override string ToString()
+    {
+        return $"{From}{To}{DateFrom}{DateTo}{Price}{TimeLimit}ProviderOne";
+    }
 }

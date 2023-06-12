@@ -22,6 +22,6 @@ internal class ProviderOneProfile : Profile
             .ForMember(dest => dest.Price, opts => opts.MapFrom(src => src.Price))
             .ForMember(dest => dest.Destination, opts => opts.MapFrom(src => src.To))
             .ForMember(dest => dest.Origin, opts => opts.MapFrom(src => src.From))
-            .ForMember(dest => dest.Id, opts => opts.MapFrom(src => Guid.NewGuid()));
+            .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.GenerateGuid()));
     }
 }

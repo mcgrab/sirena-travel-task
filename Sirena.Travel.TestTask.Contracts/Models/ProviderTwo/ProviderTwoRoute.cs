@@ -1,4 +1,6 @@
-﻿namespace Sirena.Travel.TestTask.Contracts.Models.ProviderTwo;
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Sirena.Travel.TestTask.Contracts.Models.ProviderTwo;
 
 public class ProviderTwoRoute
 {
@@ -18,4 +20,9 @@ public class ProviderTwoRoute
     // Mandatory
     // Timelimit. After it expires, route became not actual
     public DateTime TimeLimit { get; set; }
+
+    public override string ToString()
+    {
+        return $"{Departure.Point}{Arrival.Point}{Departure.Date}{Arrival.Date}{Price}{TimeLimit}ProviderTwo";
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Sirena.Travel.TestTask.Contracts;
 using Sirena.Travel.TestTask.Contracts.Exceptions;
 using Sirena.Travel.TestTask.Contracts.Models;
@@ -11,15 +12,18 @@ namespace Sirena.Travel.TestTask.Impl.Services
         private IEnumerable<IRouteProvider> _routeProviders;
         private IMapper _mapper;
         private ICacheRepository<Route> _cachedRoutes;
+        private ILogger _logger;
 
         public SearchService(
             IEnumerable<IRouteProvider> routeProviders,
             IMapper mapper,
-            ICacheRepository<Route> cachedRoutes)
+            ICacheRepository<Route> cachedRoutes,
+            ILogger<SearchService> logger)
         {
             _routeProviders = routeProviders;
             _mapper = mapper;
             _cachedRoutes = cachedRoutes;
+            _logger = logger;
         }
 
         public async Task<bool> IsAvailableAsync(CancellationToken cancellationToken)
@@ -57,9 +61,9 @@ namespace Sirena.Travel.TestTask.Impl.Services
                         routes.Add(route);
                     }
                 }
-                catch(Exception)
+                catch(Exception ex)
                 {
-                    // Log and Handle later
+                    _logger.LogWarning("Ошибка получения маршрута из провайдера.", ex);
                 }
 
             }));
@@ -92,7 +96,7 @@ namespace Sirena.Travel.TestTask.Impl.Services
                      await provider.PingAsync(cancellationToken);
                      return true;
                  }
-                 catch (Exception)
+                 catch
                  {
                      return false;
                  }
